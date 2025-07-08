@@ -10,6 +10,15 @@ const AstrophageWarningPanel: React.FC<Props> = ({ data, dates }) => {
 
   const latest = data[data.length - 1];
   const previous = data[data.length - 2];
+
+  if (previous === 0) {
+    return (
+      <div style={{ margin: '2rem auto', color: '#00ffc3', fontWeight: 'bold', fontSize: '1.25rem' }}>
+        <p>Previous value is zero — change cannot be computed.</p>
+      </div>
+    );
+  }
+
   const delta = latest - previous;
   const percentChange = (delta / previous) * 100;
 
