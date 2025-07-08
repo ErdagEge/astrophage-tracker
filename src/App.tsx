@@ -6,6 +6,10 @@ import SolarMetricsPanel from './components/SolarMetricsPanel';
 function App() {
   const [latitude, setLatitude] = useState(40);
   const [longitude, setLongitude] = useState(29);
+  const [latitudeInput, setLatitudeInput] = useState('40');
+  const [longitudeInput, setLongitudeInput] = useState('29');
+  const [latError, setLatError] = useState('');
+  const [lonError, setLonError] = useState('');
 
   return (
     <div className="App">
@@ -19,21 +23,47 @@ function App() {
           Lat:
           <input
             type="number"
-            value={latitude}
+            value={latitudeInput}
             step="0.1"
-            onChange={(e) => setLatitude(parseFloat(e.target.value))}
+            onChange={(e) => {
+              const value = e.target.value;
+              setLatitudeInput(value);
+              const parsed = parseFloat(value);
+              if (value === '' || isNaN(parsed)) {
+                setLatError('Please enter a valid number');
+              } else {
+                setLatError('');
+                setLatitude(parsed);
+              }
+            }}
             style={{ marginLeft: '0.5rem' }}
           />
+          {latError && (
+            <span style={{ color: 'red', marginLeft: '0.5rem' }}>{latError}</span>
+          )}
         </label>
         <label style={{ marginRight: '1rem' }}>
           Lon:
           <input
             type="number"
-            value={longitude}
+            value={longitudeInput}
             step="0.1"
-            onChange={(e) => setLongitude(parseFloat(e.target.value))}
+            onChange={(e) => {
+              const value = e.target.value;
+              setLongitudeInput(value);
+              const parsed = parseFloat(value);
+              if (value === '' || isNaN(parsed)) {
+                setLonError('Please enter a valid number');
+              } else {
+                setLonError('');
+                setLongitude(parsed);
+              }
+            }}
             style={{ marginLeft: '0.5rem' }}
           />
+          {lonError && (
+            <span style={{ color: 'red', marginLeft: '0.5rem' }}>{lonError}</span>
+          )}
         </label>
         <button
           onClick={() => {}}
