@@ -17,8 +17,8 @@ function SolarMetricsPanel({ latitude, longitude }: SolarMetricsPanelProps) {
     const loadData = async () => {
       const today = new Date();
       today.setDate(today.getDate() - 3);
-      const pastWeek = new Date();
-      pastWeek.setDate(today.getDate() - 6);
+      const pastWeek = new Date(today);
+      pastWeek.setDate(pastWeek.getDate() - 6);
 
       const format = (date: Date) =>
         date.toISOString().split('T')[0].replace(/-/g, '');
