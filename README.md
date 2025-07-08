@@ -2,7 +2,7 @@
 
 A sci-fi-inspired solar monitoring dashboard powered by real NASA data.
 
-Inspired by *Project Hail Mary*, **Astrophage Tracker** visualizes solar irradiance data across Earth and simulates the fictional energy-draining effects of "Astrophage." The dashboard fetches daily irradiance metrics from the NASA POWER API, plots interactive charts, and displays warning levels based on real-time energy fluctuations — all through a sleek mission console interface.
+Inspired by *Project Hail Mary*, **Astrophage Tracker** visualizes solar irradiance data across Earth and simulates the fictional energy-draining effects of "Astrophage." The dashboard fetches daily irradiance metrics from the NASA POWER API, plots interactive charts, and displays warning levels based on real-time energy fluctuations.
 
 ---
 
