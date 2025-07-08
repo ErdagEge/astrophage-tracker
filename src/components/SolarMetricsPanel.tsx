@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { fetchSolarIrradiance } from '../services/nasaPowerService';
+import IrradianceGraph from './IrradianceGraph';
 
 const SolarMetricsPanel: React.FC = () => {
   const [irradianceData, setIrradianceData] = useState<number[]>([]);
@@ -50,6 +51,7 @@ const SolarMetricsPanel: React.FC = () => {
           ))}
         </ul>
       )}
+      <IrradianceGraph labels={dates} data={irradianceData} />
     </div>
   );
 };
