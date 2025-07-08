@@ -6,9 +6,14 @@ import AstrophageWarningPanel from './AstrophageWarningPanel';
 export interface SolarMetricsPanelProps {
   latitude: number;
   longitude: number;
+  refreshTrigger: number;
 }
 
-function SolarMetricsPanel({ latitude, longitude }: SolarMetricsPanelProps) {
+function SolarMetricsPanel({
+  latitude,
+  longitude,
+  refreshTrigger,
+}: SolarMetricsPanelProps) {
   const [irradianceData, setIrradianceData] = useState<number[]>([]);
   const [dates, setDates] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -40,7 +45,7 @@ function SolarMetricsPanel({ latitude, longitude }: SolarMetricsPanelProps) {
     };
 
     loadData();
-  }, [latitude, longitude]);
+  }, [latitude, longitude, refreshTrigger]);
 
   return (
     <div>
