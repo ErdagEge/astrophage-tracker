@@ -3,12 +3,12 @@ import { fetchSolarIrradiance } from '../services/nasaPowerService';
 import IrradianceGraph from './IrradianceGraph';
 import AstrophageWarningPanel from './AstrophageWarningPanel';
 
-interface Props {
+export interface SolarMetricsPanelProps {
   latitude: number;
   longitude: number;
 }
 
-const SolarMetricsPanel: React.FC<Props> = ({ latitude, longitude }) => {
+function SolarMetricsPanel({ latitude, longitude }: SolarMetricsPanelProps) {
   const [irradianceData, setIrradianceData] = useState<number[]>([]);
   const [dates, setDates] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
