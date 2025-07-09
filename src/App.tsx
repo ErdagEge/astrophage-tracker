@@ -66,7 +66,7 @@ function App() {
           )}
         </label>
         <button
-          onClick={() => {}}
+          onClick={() => setRefreshIndex((prev) => prev + 1)}
           style={{
             backgroundColor: '#00ffc3',
             border: 'none',
@@ -78,7 +78,11 @@ function App() {
         </button>
       </form>
 
-      <SolarMetricsPanel latitude={latitude} longitude={longitude} />
+      <SolarMetricsPanel
+        latitude={latitude}
+        longitude={longitude}
+        refreshTrigger={refreshIndex}
+      />
     </div>
   );
 }
