@@ -39,8 +39,8 @@ Inspired by *Project Hail Mary*, **Astrophage Tracker** visualizes solar irradia
 npm install
 ```
 
-3. Copy `.env.example` to `.env` and adjust the `REACT_APP_NASA_API` value if you
-   need to point to a different NASA POWER API instance.
+3. Create a `.env` file and set `REACT_APP_NASA_API` to the NASA POWER API base
+   URL. Adjust this value if you need to point to a different instance.
 
 4. Run the app:
 
