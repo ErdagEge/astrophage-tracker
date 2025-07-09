@@ -36,6 +36,8 @@ const IrradianceGraph: React.FC<Props> = ({ labels, data }) => {
   };
 
   const options = {
+    responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         labels: { color: '#00ffc3' },
@@ -54,7 +56,7 @@ const IrradianceGraph: React.FC<Props> = ({ labels, data }) => {
   };
 
   return (
-    <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+    <div style={{ width: '100%', maxWidth: '900px', height: '400px', margin: '0 auto' }}>
       <Line data={chartData} options={options} />
     </div>
   );
