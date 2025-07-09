@@ -6,6 +6,7 @@ import SolarMetricsPanel from './components/SolarMetricsPanel';
 function App() {
   const [latitude, setLatitude] = useState(40);
   const [longitude, setLongitude] = useState(29);
+  const [refreshIndex, setRefreshIndex] = useState(0);
 
   return (
     <div className="App">
@@ -36,7 +37,7 @@ function App() {
           />
         </label>
         <button
-          onClick={() => {}}
+          onClick={() => setRefreshIndex((prev) => prev + 1)}
           style={{
             backgroundColor: '#00ffc3',
             border: 'none',
@@ -48,7 +49,11 @@ function App() {
         </button>
       </form>
 
-      <SolarMetricsPanel latitude={latitude} longitude={longitude} />
+      <SolarMetricsPanel
+        latitude={latitude}
+        longitude={longitude}
+        refreshTrigger={refreshIndex}
+      />
     </div>
   );
 }
