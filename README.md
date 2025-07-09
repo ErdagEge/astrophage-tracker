@@ -39,15 +39,16 @@ Inspired by *Project Hail Mary*, **Astrophage Tracker** visualizes solar irradia
 npm install
 ```
 
-3. Run the app:
+3. Copy `.env.example` to `.env` and adjust the `REACT_APP_NASA_API` value if you
+   need to point to a different NASA POWER API instance.
+
+4. Run the app:
 
 ```bash
 npm start
 ```
 
-4. Visit http://localhost:3000 in your browser.
-
-5. ---
+5. Visit http://localhost:3000 in your browser.
 
 ## 🔧 Development Notes
 - You can adjust latitude and longitude using the input fields.

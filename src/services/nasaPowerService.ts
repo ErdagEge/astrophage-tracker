@@ -6,13 +6,16 @@ export interface SolarIrradianceResponse {
   };
 }
 
+const NASA_API_BASE =
+  process.env.REACT_APP_NASA_API || 'https://power.larc.nasa.gov/api';
+
 export async function fetchSolarIrradiance(
   latitude: number,
   longitude: number,
   startDate: string,
   endDate: string
 ): Promise<SolarIrradianceResponse> {
-  const url = `https://power.larc.nasa.gov/api/temporal/daily/point?parameters=ALLSKY_SFC_SW_DWN&start=${startDate}&end=${endDate}&latitude=${latitude}&longitude=${longitude}&community=RE&format=JSON`;
+  const url = `${NASA_API_BASE}/temporal/daily/point?parameters=ALLSKY_SFC_SW_DWN&start=${startDate}&end=${endDate}&latitude=${latitude}&longitude=${longitude}&community=RE&format=JSON`;
 
   const response = await fetch(url);
   if (!response.ok) {
