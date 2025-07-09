@@ -10,6 +10,7 @@ function App() {
   const [longitudeInput, setLongitudeInput] = useState('29');
   const [latError, setLatError] = useState('');
   const [lonError, setLonError] = useState('');
+  const [refreshIndex, setRefreshIndex] = useState(0);
 
   return (
     <div className="App">
