@@ -10,7 +10,7 @@ Inspired by *Project Hail Mary*, **Astrophage Tracker** visualizes solar irradia
 
 - 🔭 Live solar irradiance data from NASA POWER API
 - 📉 Glowing graph panel to visualize daily energy levels
-- 🛑 Astrophage containment warnings based on energy drops
+- 🛑 Astrophage containment warnings based on week-over-week energy drops
 - 🌍 Manual coordinate input for global tracking
 - 🧬 Fictional sci-fi overlay built on real scientific data
 - 🌗 Light/dark mode toggle for customized viewing
