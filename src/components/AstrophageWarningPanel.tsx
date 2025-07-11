@@ -6,10 +6,11 @@ interface Props {
 }
 
 const AstrophageWarningPanel: React.FC<Props> = ({ data, dates }) => {
-  if (data.length < 2) return null;
+  // need at least a week's worth of data to calculate change
+  if (data.length < 8) return null;
 
   const latest = data[data.length - 1];
-  const previous = data[data.length - 2];
+  const previous = data[data.length - 8];
 
   if (previous === 0) {
     return (
@@ -47,7 +48,7 @@ const AstrophageWarningPanel: React.FC<Props> = ({ data, dates }) => {
     <div style={{ margin: '2rem auto', color, fontWeight: 'bold', fontSize: '1.25rem' }}>
       <p>{warning}</p>
       <p>
-        {dates[dates.length - 2]} → {dates[dates.length - 1]}:{' '}
+        {dates[dates.length - 8]} → {dates[dates.length - 1]}:{' '}
         {percentChange.toFixed(2)}% change in irradiance
       </p>
     </div>
