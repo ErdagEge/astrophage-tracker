@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import SolarMetricsPanel from './components/SolarMetricsPanel';
+import ThemeSwitch from './components/ThemeSwitch';
 import { geocodeCity } from './services/geocodingService';
 
 
@@ -23,19 +24,12 @@ function App() {
   return (
     <div className="App">
       <h1>Astrophage Tracker</h1>
-      <button
-        className="theme-toggle"
-        onClick={() => setLightMode((prev) => !prev)}
-        style={{
-          backgroundColor: 'var(--accent-color)',
-          border: 'none',
-          padding: '0.3rem 0.8rem',
-          cursor: 'pointer',
-          marginBottom: '1rem',
-        }}
-      >
-        {lightMode ? 'Dark Mode' : 'Light Mode'}
-      </button>
+      <div style={{ marginBottom: '1rem' }}>
+        <ThemeSwitch
+          checked={lightMode}
+          onToggle={() => setLightMode((prev) => !prev)}
+        />
+      </div>
 
       <section className="city-search-section">
         <form
