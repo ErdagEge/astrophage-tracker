@@ -25,7 +25,14 @@ describe('SolarMetricsPanel date range', () => {
   });
 
   it('calls fetchSolarIrradiance with correct three-month range', async () => {
-    render(<SolarMetricsPanel latitude={1} longitude={2} refreshTrigger={0} />);
+    render(
+      <SolarMetricsPanel
+        latitude={1}
+        longitude={2}
+        refreshTrigger={0}
+        theme="dark"
+      />
+    );
 
     await waitFor(() => {
       expect(mockedFetch).toHaveBeenCalled();
