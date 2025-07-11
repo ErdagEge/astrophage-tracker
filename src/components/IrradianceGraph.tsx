@@ -17,20 +17,26 @@ ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Tooltip,
 interface Props {
   labels: string[];
   data: number[];
+  theme: 'light' | 'dark';
 }
 
-const IrradianceGraph: React.FC<Props> = ({ labels, data }) => {
+const IrradianceGraph: React.FC<Props> = ({ labels, data, theme }) => {
+  const styles = getComputedStyle(document.body);
+  const accent = styles.getPropertyValue('--accent-color').trim();
+  const accentLight = styles.getPropertyValue('--accent-light').trim();
+  const gridColor = styles.getPropertyValue('--grid-color').trim();
+
   const chartData = {
     labels,
     datasets: [
       {
         label: 'Irradiance',
         data,
-        borderColor: '#00ffc3',
-        backgroundColor: 'rgba(0, 255, 195, 0.1)',
+        borderColor: accent,
+        backgroundColor: accentLight,
         tension: 0.3,
         pointRadius: 3,
-        pointBackgroundColor: '#00ffc3',
+        pointBackgroundColor: accent,
       },
     ],
   };
@@ -40,24 +46,24 @@ const IrradianceGraph: React.FC<Props> = ({ labels, data }) => {
     maintainAspectRatio: false,
     plugins: {
       legend: {
-        labels: { color: '#00ffc3' },
+        labels: { color: accent },
       },
     },
     scales: {
       x: {
-        ticks: { color: '#00ffc3' },
-        grid: { color: 'rgba(0,255,195,0.1)' },
+        ticks: { color: accent },
+        grid: { color: gridColor },
       },
       y: {
-        ticks: { color: '#00ffc3' },
-        grid: { color: 'rgba(0,255,195,0.1)' },
+        ticks: { color: accent },
+        grid: { color: gridColor },
       },
     },
   };
 
   return (
     <div style={{ width: '100%', maxWidth: '900px', height: '400px', margin: '0 auto' }}>
-      <Line data={chartData} options={options} />
+      <Line key={theme} data={chartData} options={options} />
     </div>
   );
 };

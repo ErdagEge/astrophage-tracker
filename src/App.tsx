@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import SolarMetricsPanel from './components/SolarMetricsPanel';
 import { geocodeCity } from './services/geocodingService';
@@ -14,10 +14,28 @@ function App() {
   const [refreshIndex, setRefreshIndex] = useState(0);
   const [city, setCity] = useState('');
   const [cityError, setCityError] = useState('');
+  const [lightMode, setLightMode] = useState(false);
+
+  useEffect(() => {
+    document.body.classList.toggle('light', lightMode);
+  }, [lightMode]);
 
   return (
     <div className="App">
       <h1>Astrophage Tracker</h1>
+      <button
+        className="theme-toggle"
+        onClick={() => setLightMode((prev) => !prev)}
+        style={{
+          backgroundColor: 'var(--accent-color)',
+          border: 'none',
+          padding: '0.3rem 0.8rem',
+          cursor: 'pointer',
+          marginBottom: '1rem',
+        }}
+      >
+        {lightMode ? 'Dark Mode' : 'Light Mode'}
+      </button>
 
       <section className="city-search-section">
         <form
@@ -49,7 +67,7 @@ function App() {
               }}
               style={{
                 marginLeft: '1rem',
-                backgroundColor: '#00ffc3',
+                backgroundColor: 'var(--accent-color)',
                 border: 'none',
                 padding: '0.3rem 0.8rem',
                 cursor: 'pointer',
@@ -114,7 +132,7 @@ function App() {
             onClick={() => setRefreshIndex((prev) => prev + 1)}
             disabled={latError !== '' || lonError !== ''}
             style={{
-              backgroundColor: '#00ffc3',
+              backgroundColor: 'var(--accent-color)',
               border: 'none',
               padding: '0.5rem 1rem',
               cursor: latError !== '' || lonError !== '' ? 'not-allowed' : 'pointer',
@@ -131,6 +149,7 @@ function App() {
           latitude={latitude}
           longitude={longitude}
           refreshTrigger={refreshIndex}
+          theme={lightMode ? 'light' : 'dark'}
         />
       </section>
     </div>

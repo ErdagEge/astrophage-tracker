@@ -7,12 +7,14 @@ export interface SolarMetricsPanelProps {
   latitude: number;
   longitude: number;
   refreshTrigger: number;
+  theme: 'light' | 'dark';
 }
 
 function SolarMetricsPanel({
   latitude,
   longitude,
   refreshTrigger,
+  theme,
 }: SolarMetricsPanelProps) {
   const [irradianceData, setIrradianceData] = useState<number[]>([]);
   const [dates, setDates] = useState<string[]>([]);
@@ -76,7 +78,7 @@ function SolarMetricsPanel({
             </ul>
             </div>
           )}
-          <IrradianceGraph labels={dates} data={irradianceData} />
+          <IrradianceGraph labels={dates} data={irradianceData} theme={theme} />
         </>
       )}
     </div>

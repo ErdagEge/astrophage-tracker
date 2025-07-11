@@ -13,6 +13,7 @@ Inspired by *Project Hail Mary*, **Astrophage Tracker** visualizes solar irradia
 - 🛑 Astrophage containment warnings based on energy drops
 - 🌍 Manual coordinate input for global tracking
 - 🧬 Fictional sci-fi overlay built on real scientific data
+- 🌗 Light/dark mode toggle for customized viewing
 
 ---
 
