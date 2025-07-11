@@ -1,6 +1,8 @@
 import React from 'react';
 import './ThemeSwitch.css';
 
+// From Uiverse.io by Galahhad 
+
 interface ThemeSwitchProps {
   checked: boolean;
   onToggle: () => void;
