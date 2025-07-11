@@ -26,7 +26,7 @@ function App() {
       <h1>Astrophage Tracker</h1>
       <div style={{ marginBottom: '1rem' }}>
         <ThemeSwitch
-          checked={lightMode}
+          checked={!lightMode}
           onToggle={() => setLightMode((prev) => !prev)}
         />
       </div>
