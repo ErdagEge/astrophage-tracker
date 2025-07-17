@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import SolarMetricsPanel from './components/SolarMetricsPanel';
-import ThemeSwitch from './components/ThemeSwitch';
 import { geocodeCity } from './services/geocodingService';
 
 
@@ -15,21 +14,11 @@ function App() {
   const [refreshIndex, setRefreshIndex] = useState(0);
   const [city, setCity] = useState('');
   const [cityError, setCityError] = useState('');
-  const [lightMode, setLightMode] = useState(false);
-
-  useEffect(() => {
-    document.body.classList.toggle('light', lightMode);
-  }, [lightMode]);
 
   return (
     <div className="App">
       <h1>Astrophage Tracker</h1>
-      <div style={{ marginBottom: '1rem' }}>
-        <ThemeSwitch
-          checked={!lightMode}
-          onToggle={() => setLightMode((prev) => !prev)}
-        />
-      </div>
+
 
       <section className="city-search-section">
         <form
@@ -143,7 +132,7 @@ function App() {
           latitude={latitude}
           longitude={longitude}
           refreshTrigger={refreshIndex}
-          theme={lightMode ? 'light' : 'dark'}
+          theme="dark"
         />
       </section>
     </div>
