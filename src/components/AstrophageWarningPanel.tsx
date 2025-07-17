@@ -6,14 +6,22 @@ interface Props {
 }
 
 const AstrophageWarningPanel: React.FC<Props> = ({ data, dates }) => {
-  if (data.length < 2) return null;
+  // need at least a week's worth of data to calculate change
+  if (data.length < 8) return null;
 
   const latest = data[data.length - 1];
-  const previous = data[data.length - 2];
+  const previous = data[data.length - 8];
 
   if (previous === 0) {
     return (
-      <div style={{ margin: '2rem auto', color: '#00ffc3', fontWeight: 'bold', fontSize: '1.25rem' }}>
+      <div
+        style={{
+          margin: '2rem auto',
+          color: 'var(--accent-color)',
+          fontWeight: 'bold',
+          fontSize: '1.25rem',
+        }}
+      >
         <p>Previous value is zero — change cannot be computed.</p>
       </div>
     );
@@ -23,7 +31,7 @@ const AstrophageWarningPanel: React.FC<Props> = ({ data, dates }) => {
   const percentChange = (delta / previous) * 100;
 
   let warning = 'Stable';
-  let color = '#00ffc3';
+  let color = 'var(--accent-color)';
 
   if (percentChange <= -2 && percentChange > -5) {
     warning = '⚠️ Minor Anomaly Detected';
@@ -40,7 +48,7 @@ const AstrophageWarningPanel: React.FC<Props> = ({ data, dates }) => {
     <div style={{ margin: '2rem auto', color, fontWeight: 'bold', fontSize: '1.25rem' }}>
       <p>{warning}</p>
       <p>
-        {dates[dates.length - 2]} → {dates[dates.length - 1]}:{' '}
+        {dates[dates.length - 8]} → {dates[dates.length - 1]}:{' '}
         {percentChange.toFixed(2)}% change in irradiance
       </p>
     </div>

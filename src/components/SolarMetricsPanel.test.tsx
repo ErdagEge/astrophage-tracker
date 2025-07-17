@@ -2,6 +2,11 @@ import { render, waitFor } from '@testing-library/react';
 import SolarMetricsPanel from './SolarMetricsPanel';
 import * as nasaService from '../services/nasaPowerService';
 
+// Mock the chart component to avoid requiring a canvas implementation in JSDOM
+jest.mock('react-chartjs-2', () => ({
+  Line: () => <div data-testid="mock-line-chart" />,
+}));
+
 jest.mock('../services/nasaPowerService');
 
 const mockedFetch = nasaService.fetchSolarIrradiance as jest.MockedFunction<typeof nasaService.fetchSolarIrradiance>;
@@ -19,8 +24,15 @@ describe('SolarMetricsPanel date range', () => {
     jest.resetAllMocks();
   });
 
-  it('calls fetchSolarIrradiance with correct past week range', async () => {
-    render(<SolarMetricsPanel latitude={1} longitude={2} refreshTrigger={0} />);
+  it('calls fetchSolarIrradiance with correct three-month range', async () => {
+    render(
+      <SolarMetricsPanel
+        latitude={1}
+        longitude={2}
+        refreshTrigger={0}
+        theme="dark"
+      />
+    );
 
     await waitFor(() => {
       expect(mockedFetch).toHaveBeenCalled();
@@ -29,7 +41,7 @@ describe('SolarMetricsPanel date range', () => {
     expect(mockedFetch).toHaveBeenCalledWith(
       1,
       2,
-      '20231224',
+      '20230930',
       '20231230'
     );
   });

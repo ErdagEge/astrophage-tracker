@@ -19,6 +19,7 @@ function App() {
     <div className="App">
       <h1>Astrophage Tracker</h1>
 
+
       <section className="city-search-section">
         <form
           onSubmit={(e) => e.preventDefault()}
@@ -49,7 +50,7 @@ function App() {
               }}
               style={{
                 marginLeft: '1rem',
-                backgroundColor: '#00ffc3',
+                backgroundColor: 'var(--accent-color)',
                 border: 'none',
                 padding: '0.3rem 0.8rem',
                 cursor: 'pointer',
@@ -72,6 +73,8 @@ function App() {
                 const parsed = parseFloat(value);
                 if (value === '' || isNaN(parsed)) {
                   setLatError('Please enter a valid number');
+                } else if (parsed < -90 || parsed > 90) {
+                  setLatError('Latitude must be between -90 and 90');
                 } else {
                   setLatError('');
                   setLatitude(parsed);
@@ -95,6 +98,8 @@ function App() {
                 const parsed = parseFloat(value);
                 if (value === '' || isNaN(parsed)) {
                   setLonError('Please enter a valid number');
+                } else if (parsed < -180 || parsed > 180) {
+                  setLonError('Longitude must be between -180 and 180');
                 } else {
                   setLonError('');
                   setLongitude(parsed);
@@ -108,11 +113,13 @@ function App() {
           </label>
           <button
             onClick={() => setRefreshIndex((prev) => prev + 1)}
+            disabled={latError !== '' || lonError !== ''}
             style={{
-              backgroundColor: '#00ffc3',
+              backgroundColor: 'var(--accent-color)',
               border: 'none',
               padding: '0.5rem 1rem',
-              cursor: 'pointer',
+              cursor: latError !== '' || lonError !== '' ? 'not-allowed' : 'pointer',
+              opacity: latError !== '' || lonError !== '' ? 0.5 : 1,
             }}
           >
             Track
@@ -125,6 +132,7 @@ function App() {
           latitude={latitude}
           longitude={longitude}
           refreshTrigger={refreshIndex}
+          theme="dark"
         />
       </section>
     </div>
