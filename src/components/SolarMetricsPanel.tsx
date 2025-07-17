@@ -43,7 +43,14 @@ function SolarMetricsPanel({
 
         const filtered = Object.entries(irradianceMap).filter(([, value]) => value > -900);
 
-        setDates(filtered.map(([key]) => key));
+        const formatDisplayDate = (raw: string) => {
+          const year = raw.slice(0, 4);
+          const month = raw.slice(4, 6);
+          const day = raw.slice(6, 8);
+          return `${day}-${month}-${year}`;
+        };
+
+        setDates(filtered.map(([key]) => formatDisplayDate(key)));
         setIrradianceData(filtered.map(([, value]) => value));
 
       } catch (err) {
