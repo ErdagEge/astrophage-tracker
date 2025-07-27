@@ -34,19 +34,17 @@ Inspired by *Project Hail Mary*, **Astrophage Tracker** visualizes solar irradia
    ```
    
 2. Install dependencies:
-
-```bash
-npm install
-```
+   ```bash
+   npm install
+   ```
 
 3. Create a `.env` file and set `REACT_APP_NASA_API` to the NASA POWER API base
    URL. Adjust this value if you need to point to a different instance.
 
 4. Run the app:
-
-```bash
-npm start
-```
+   ```bash
+   npm start
+   ```
 
 5. Visit http://localhost:3000 in your browser.
 
