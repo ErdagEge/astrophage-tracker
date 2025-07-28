@@ -21,19 +21,16 @@ function App() {
 
 
       <section className="city-search-section">
-        <form
-          onSubmit={(e) => e.preventDefault()}
-          style={{ marginBottom: '2rem' }}
-        > 
-          <label style={{ display: 'block', marginBottom: '1rem' }}>
-            Search by City:
-            <input
-              type="text"
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-              style={{ marginLeft: '0.5rem', width: '200px' }}
-            />
-            <button
+        <div className="search-form-container">
+          <form className="search-form" onSubmit={(e) => e.preventDefault()}>
+            <label>
+              Search by City:
+              <input
+                type="text"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+              />
+              <button
               onClick={async (e) => {
                 e.preventDefault();
                 const result = await geocodeCity(city);
@@ -48,23 +45,22 @@ function App() {
                   setCityError('City not found');
                 }
               }}
-              style={{
-                marginLeft: '1rem',
-                backgroundColor: 'var(--accent-color)',
-                border: 'none',
-                padding: '0.3rem 0.8rem',
-                cursor: 'pointer',
-              }}
-            >
-              Go
-            </button>
-            {cityError && <p style={{ color: 'red' }}>{cityError}</p>}
-          </label>
+                style={{
+                  backgroundColor: 'var(--accent-color)',
+                  border: 'none',
+                  padding: '0.3rem 0.8rem',
+                  cursor: 'pointer',
+                }}
+              >
+                Go
+              </button>
+              {cityError && <p style={{ color: 'red' }}>{cityError}</p>}
+            </label>
 
-          <label style={{ marginRight: '1rem' }}>
-            Lat:
-            <input
-              type="number"
+            <label>
+              Lat:
+              <input
+                type="number"
               value={latitudeInput}
               step="0.1"
               onChange={(e) => {
@@ -79,17 +75,16 @@ function App() {
                   setLatError('');
                   setLatitude(parsed);
                 }
-              }}
-              style={{ marginLeft: '0.5rem' }}
-            />
-            {latError && (
+                }}
+              />
+              {latError && (
               <span style={{ color: 'red', marginLeft: '0.5rem' }}>{latError}</span>
-            )}
-          </label>
-          <label style={{ marginRight: '1rem' }}>
-            Lon:
-            <input
-              type="number"
+              )}
+            </label>
+            <label>
+              Lon:
+              <input
+                type="number"
               value={longitudeInput}
               step="0.1"
               onChange={(e) => {
@@ -104,13 +99,12 @@ function App() {
                   setLonError('');
                   setLongitude(parsed);
                 }
-              }}
-              style={{ marginLeft: '0.5rem' }}
-            />
-            {lonError && (
+                }}
+              />
+              {lonError && (
               <span style={{ color: 'red', marginLeft: '0.5rem' }}>{lonError}</span>
-            )}
-          </label>
+              )}
+            </label>
           <button
             onClick={() => setRefreshIndex((prev) => prev + 1)}
             disabled={latError !== '' || lonError !== ''}
@@ -124,7 +118,8 @@ function App() {
           >
             Track
           </button>
-        </form>
+          </form>
+        </div>
       </section>
 
       <section className="metrics-panel-section">
