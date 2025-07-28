@@ -112,11 +112,17 @@ li {
 
 .search-form {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.form-row {
+  display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  margin-bottom: 2rem;
 }
 
 .search-form label {
