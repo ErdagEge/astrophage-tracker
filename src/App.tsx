@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import './App.css';
 import SolarMetricsPanel from './components/SolarMetricsPanel';
+import CityButtonPanel from './components/CityButtonPanel';
 import { geocodeCity } from './services/geocodingService';
+import { cityList } from './cities';
 
 
 function App() {
@@ -14,6 +16,7 @@ function App() {
   const [refreshIndex, setRefreshIndex] = useState(0);
   const [city, setCity] = useState('');
   const [cityError, setCityError] = useState('');
+  const [cities] = useState(cityList);
 
   return (
     <div className="App">
@@ -135,6 +138,17 @@ function App() {
           theme="dark"
         />
       </section>
+
+      <CityButtonPanel
+        cities={cities}
+        onCityClick={(lat, lon) => {
+          setLatitude(lat);
+          setLongitude(lon);
+          setLatitudeInput(lat.toFixed(2));
+          setLongitudeInput(lon.toFixed(2));
+          setRefreshIndex((prev) => prev + 1);
+        }}
+      />
     </div>
   );
 }
