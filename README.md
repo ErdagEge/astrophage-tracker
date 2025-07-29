@@ -19,9 +19,9 @@ Inspired by *Project Hail Mary*, **Astrophage Tracker** visualizes solar irradia
 ## 🧪 Tech Stack
 
 - **Frontend:** React + TypeScript
-- **Charting:** Chart.js (via react-chartjs-2)
+- **Charting:** Chart.js
 - **Styling:** Custom CSS with terminal aesthetics
-- **Data Source:** NASA POWER API (https://power.larc.nasa.gov/)
+- **Data Source:** NASA POWER API
 
 ---
 
@@ -56,7 +56,7 @@ Inspired by *Project Hail Mary*, **Astrophage Tracker** visualizes solar irradia
 ---
 
 ## 📚 Credits
-- NASA POWER API: Solar & meteorological data
+- [NASA POWER API](https://power.larc.nasa.gov/): Solar & meteorological data
 - Andy Weir: Author of Project Hail Mary, the creative inspiration behind this project
 
 ---
