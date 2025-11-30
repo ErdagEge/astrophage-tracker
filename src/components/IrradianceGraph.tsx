@@ -20,7 +20,12 @@ interface Props {
   theme: 'light' | 'dark';
 }
 
+/**
+ * Renders a line chart displaying solar irradiance data over time.
+ * Uses Chart.js for rendering and adapts colors based on CSS variables.
+ */
 const IrradianceGraph: React.FC<Props> = ({ labels, data, theme }) => {
+  // Retrieve CSS variables for consistent theming
   const styles = getComputedStyle(document.body);
   const accent = styles.getPropertyValue('--accent-color').trim();
   const accentLight = styles.getPropertyValue('--accent-light').trim();

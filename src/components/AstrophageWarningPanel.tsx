@@ -5,6 +5,11 @@ interface Props {
   dates: string[];
 }
 
+/**
+ * A component that analyzes solar irradiance data to detect potential anomalies
+ * caused by "Astrophage" (a fictional concept) by calculating the percentage drop
+ * over the last week.
+ */
 const AstrophageWarningPanel: React.FC<Props> = ({ data, dates }) => {
   // need at least a week's worth of data to calculate change
   if (data.length < 8) return null;
@@ -12,6 +17,7 @@ const AstrophageWarningPanel: React.FC<Props> = ({ data, dates }) => {
   const latest = data[data.length - 1];
   const previous = data[data.length - 8];
 
+  // Avoid division by zero
   if (previous === 0) {
     return (
       <div
@@ -33,6 +39,7 @@ const AstrophageWarningPanel: React.FC<Props> = ({ data, dates }) => {
   let warning = 'Stable';
   let color = 'var(--accent-color)';
 
+  // Determine warning level based on the percentage drop
   if (percentChange <= -2 && percentChange > -5) {
     warning = '⚠️ Minor Anomaly Detected';
     color = '#ffff66';
