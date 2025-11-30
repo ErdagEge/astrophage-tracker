@@ -10,24 +10,31 @@ export interface SolarMetricsPanelProps {
   theme: 'light' | 'dark';
 }
 
+/**
+ * Main panel component that fetches and displays solar irradiance metrics.
+ * It manages the data fetching state and renders the warning panel, data list, and graph.
+ */
 function SolarMetricsPanel({
   latitude,
   longitude,
   refreshTrigger,
   theme,
 }: SolarMetricsPanelProps) {
+  // State for storing irradiance values
   const [irradianceData, setIrradianceData] = useState<number[]>([]);
+  // State for storing formatted dates corresponding to the data
   const [dates, setDates] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
+  // Fetch data whenever latitude, longitude, or refreshTrigger changes
   useEffect(() => {
     const loadData = async () => {
       setLoading(true);
       const today = new Date();
-      today.setDate(today.getDate() - 3); // buffer for latest data
+      today.setDate(today.getDate() - 3); // buffer for latest data, as API might not have yesterday's data yet
       const pastDate = new Date(today);
-      pastDate.setMonth(today.getMonth() - 3); // 3 months back
+      pastDate.setMonth(today.getMonth() - 3); // Fetch data for the last 3 months
 
 
       const format = (date: Date) =>
@@ -43,6 +50,7 @@ function SolarMetricsPanel({
 
         const irradianceMap = data.properties.parameter.ALLSKY_SFC_SW_DWN;
 
+        // Filter out invalid values (usually -999 for missing data)
         const filtered = Object.entries(irradianceMap).filter(([, value]) => value > -900);
 
         const formatDisplayDate = (raw: string) => {

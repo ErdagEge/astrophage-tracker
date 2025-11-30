@@ -6,14 +6,28 @@ import { geocodeCity } from './services/geocodingService';
 import { cityList } from './cities';
 
 
+/**
+ * The main application component.
+ * It holds the state for the selected location (latitude, longitude) and renders
+ * the search form, the solar metrics panel, and the list of predefined cities.
+ */
 function App() {
+  // Current selected coordinates used for fetching data
   const [latitude, setLatitude] = useState(40);
   const [longitude, setLongitude] = useState(29);
+
+  // Input field states
   const [latitudeInput, setLatitudeInput] = useState('40');
   const [longitudeInput, setLongitudeInput] = useState('29');
+
+  // Error messages for validation
   const [latError, setLatError] = useState('');
   const [lonError, setLonError] = useState('');
+
+  // Trigger to force refresh of the solar metrics panel
   const [refreshIndex, setRefreshIndex] = useState(0);
+
+  // City search state
   const [city, setCity] = useState('');
   const [cityError, setCityError] = useState('');
   const [cities] = useState(cityList);
@@ -38,6 +52,7 @@ function App() {
               <button
                 onClick={async (e) => {
                   e.preventDefault();
+                  // Geocode the entered city name
                   const result = await geocodeCity(city);
                   if (result) {
                     setLatitude(result.lat);
@@ -45,6 +60,7 @@ function App() {
                     setLatitudeInput(result.lat.toFixed(2));
                     setLongitudeInput(result.lon.toFixed(2));
                     setCityError('');
+                    // Trigger a refresh
                     setRefreshIndex((prev) => prev + 1);
                   } else {
                     setCityError('City not found');

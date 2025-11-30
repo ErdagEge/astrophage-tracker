@@ -7,6 +7,10 @@ interface Props {
     onCityClick: (lat: number, lon: number) => void;
 }
 
+/**
+ * A panel of buttons representing predefined cities.
+ * Clicking a button triggers the `onCityClick` callback with the city's coordinates.
+ */
 const CityButtonPanel: React.FC<Props> = ({ cities, onCityClick }) => {
     return (
         <div className="city-button-panel">
